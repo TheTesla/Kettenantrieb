@@ -4,6 +4,20 @@ $fn = 50;
 pi = 3.14159;
 
 h = 4.5;
+hz1 = 15;
+hz2 = 15;
+
+h1 = 33;
+h2 = 33;
+hs1 = 14;
+hs2 = 14;
+sb1 = 3;
+sb2 = 3;
+st1 = 12;
+st2 = 12;
+
+rl = 4;
+
 
 s = 14.5;
 n = 13;
@@ -28,7 +42,15 @@ rotate([0,0,360*i/n])
 		}
 }
 difference(){
-	cylinder(h,r,r);
-	cylinder(h,r-3,r-3);
+	union(){
+		translate([0,0,hs2+h+sb2])cylinder(h2-sb2-hs2,r,r);
+		translate([0,0,hs2+h])cylinder(sb2,r-st2,r-st2);
+		translate([0,0,-hs1])cylinder(h+hs1+hs2,r,r);
+		translate([0,0,-sb1-hs1])cylinder(sb1,r-st1,r-st1);
+		translate([0,0,-h1])cylinder(h1-sb1-hs1,r,r);
+	
+	}
+	
+	translate([0,0,-h2]) cylinder(h1+h2+h,rl,rl);
 
 }

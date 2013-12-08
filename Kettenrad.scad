@@ -4,34 +4,29 @@ $fn = 50;
 pi = 3.14159;
 
 h = 4.5;
-hz1 = 15;
-hz2 = 15;
 
-h1 = 33;
-h2 = 33;
-hs1 = 14;
-hs2 = 14;
-sb1 = 3;
-sb2 = 3;
-st1 = 12;
-st2 = 12;
+
+
+hn = 12;
+rn = 10;
 
 rl = 4;
 
 
-s = 14.5;
+s = 14.5; 
 n = 13;
+nl = 6;
+rkl = 5;
+rlk = 19;
+rb = 1.5;
+hb = 11;
 
 zb = 5;
 zl = 5;
 
 u=s*n;
-
 r= u/(2*pi);
-
-
 for(i=[0:n-1]){
-
 rotate([0,0,360*i/n])
 	translate([-1.3*zl-r,0,0])
 		scale([zl,zb,1])
@@ -43,14 +38,16 @@ rotate([0,0,360*i/n])
 }
 difference(){
 	union(){
-		translate([0,0,hs2+h+sb2])cylinder(h2-sb2-hs2,r,r);
-		translate([0,0,hs2+h])cylinder(sb2,r-st2,r-st2);
-		translate([0,0,-hs1])cylinder(h+hs1+hs2,r,r);
-		translate([0,0,-sb1-hs1])cylinder(sb1,r-st1,r-st1);
-		translate([0,0,-h1])cylinder(h1-sb1-hs1,r,r);
-	
+		translate([0,0,0]) cylinder(h,r,r);
+		translate([0,0,h]) cylinder(hn,rn,rn);
 	}
 	
-	translate([0,0,-h2]) cylinder(h1+h2+h,rl,rl);
-
+	translate([0,0,0]) cylinder(hn+h,rl,rl);
+	for(i=[0:nl-1]){
+		translate([rlk*cos(360*i/nl),rlk*sin(360*i/nl),0]) cylinder(h,rkl,rkl);
+	
+	}
+	translate([0,0,hb])rotate([90,0,0])cylinder(rn,rb,rb);
+	translate([0,0,hb])rotate([90,0,120])cylinder(rn,rb,rb);
+	translate([0,0,hb])rotate([90,0,240])cylinder(rn,rb,rb);
 }
